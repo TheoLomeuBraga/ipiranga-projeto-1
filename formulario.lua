@@ -26,6 +26,8 @@ Qual é o ROI (retorno sobre o investimento) do clube de vantagens?
 
 ]]
 
+--comentario
+
 formulario = {
   new = function(nome)
     return {
