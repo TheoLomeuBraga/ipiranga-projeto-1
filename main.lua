@@ -1,4 +1,5 @@
 require("creditos")
 creditar()
 
-require("dados")
+require("formulario")
+test_formulario()

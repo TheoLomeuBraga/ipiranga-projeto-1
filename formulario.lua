@@ -27,11 +27,93 @@ Qual é o ROI (retorno sobre o investimento) do clube de vantagens?
 ]]
 
 --comentario
+-- Feito pelo Pierre (Quantidade de clientes na base de cadastro + Clientes novos / pelos clientes inativos ou de exclusão de conta)
 
-formulario = {
-  new = function(nome)
-    return {
-      nome = nome,
-    }
-  end
+require("adicionais")
+
+novos_usuarios = 0
+
+function novo_formulario(faxa_etaria,cadastrado,usa_o_app,frequencia_uso,beneficio_favorito,usa_resgates,sujestao_melhoria,extra,e_mail)
+  return {
+    faxa_etaria = faxa_etaria,
+    cadastrado = cadastrado,
+    usa_o_app = usa_o_app,
+    frequencia_uso = frequencia_uso,
+    beneficio_favorito = beneficio_favorito,
+    usa_resgates = usa_resgates,
+    sujestao_melhoria = sujestao_melhoria,
+    extra = extra,
+    e_mail = e_mail,
+  }
+end
+
+formularios = {
+  novo_formulario("18 - 25 anos",false,"Uso semanlmente","Semanalmente",beneficio_favorito,usa_resgates,sujestao_melhoria,extra,""),
+  novo_formulario("26 - 35 anos",false,"Nunca Utilizei","não uso",beneficio_favorito,usa_resgates,sujestao_melhoria,extra,""),
+  novo_formulario("26 - 35 anos",false,"Nunca Utilizei","não uso",beneficio_favorito,usa_resgates,sujestao_melhoria,extra,""),
+  novo_formulario("18 - 25 anos",false,"Nunca Utilizei","não uso",beneficio_favorito,usa_resgates,sujestao_melhoria,extra,""),
+  novo_formulario("18 - 25 anos",false,"Nunca Utilizei","não uso",beneficio_favorito,usa_resgates,sujestao_melhoria,extra,""),
+  novo_formulario("18 - 25 anos",false,"Nunca Utilizei","não uso",beneficio_favorito,usa_resgates,sujestao_melhoria,extra,""),
+  novo_formulario("18 - 25 anos",false,"Nunca Utilizei","não uso",beneficio_favorito,usa_resgates,sujestao_melhoria,extra,""),
+  novo_formulario("18 - 25 anos",false,"Nunca Utilizei","não uso",beneficio_favorito,usa_resgates,sujestao_melhoria,extra,""),
+  novo_formulario("26 - 35 anos",false,"Nunca Utilizei","não uso",beneficio_favorito,usa_resgates,sujestao_melhoria,extra,""),
+  novo_formulario("18 - 25 anos",false,"Nunca Utilizei","não uso",beneficio_favorito,usa_resgates,sujestao_melhoria,extra,""),
+  novo_formulario("18 - 25 anos",false,"Nunca Utilizei","não uso",beneficio_favorito,usa_resgates,sujestao_melhoria,extra,""),
+  novo_formulario("18 - 25 anos",false,"Nunca Utilizei","não uso",beneficio_favorito,usa_resgates,sujestao_melhoria,extra,""),
+  novo_formulario("18 - 25 anos",false,"Nunca Utilizei","não uso",beneficio_favorito,usa_resgates,sujestao_melhoria,extra,""),
+  novo_formulario("46-55 anos",false,"Nunca Utilizei","não uso",beneficio_favorito,usa_resgates,sujestao_melhoria,extra,""),
+  novo_formulario("36 - 45 anos",false,"Nunca Utilizei","não uso",beneficio_favorito,usa_resgates,sujestao_melhoria,extra,""),
+  novo_formulario("26 - 35 anos",false,"Nunca Utilizei","não uso",beneficio_favorito,usa_resgates,sujestao_melhoria,extra,""),
+  novo_formulario("46-55 anos",false,"Nunca Utilizei","não uso",beneficio_favorito,usa_resgates,sujestao_melhoria,extra,""),
+  novo_formulario("26 - 35 anos",false,"Nunca Utilizei","não uso",beneficio_favorito,usa_resgates,sujestao_melhoria,extra,""),
+  novo_formulario("26 - 35 anos",false,"Nunca Utilizei","não uso",beneficio_favorito,usa_resgates,sujestao_melhoria,extra,""),
+  novo_formulario("26 - 35 anos",false,"Nunca Utilizei","não uso",beneficio_favorito,usa_resgates,sujestao_melhoria,extra,""),
+  novo_formulario("Mais de 55 anos",false,"Nunca Utilizei","não uso",beneficio_favorito,usa_resgates,sujestao_melhoria,extra,""),
+  novo_formulario("18 - 25 anos",true,"Uso ocasionalmente","Ocasionalmente",beneficio_favorito,usa_resgates,sujestao_melhoria,extra,""),
+  novo_formulario("46-55 anos",false,"Nunca Utilizei","não uso",beneficio_favorito,usa_resgates,sujestao_melhoria,extra,""),
+  novo_formulario("Mais de 55 anos",false,"Nunca Utilizei","não uso",beneficio_favorito,usa_resgates,sujestao_melhoria,extra,""),
+  novo_formulario("46-55 anos",false,"Nunca Utilizei","não uso",beneficio_favorito,usa_resgates,sujestao_melhoria,extra,""),
+  novo_formulario("26 - 35 anos",false,"Nunca Utilizei","não uso",beneficio_favorito,usa_resgates,sujestao_melhoria,extra,""),
+  novo_formulario("18 - 25 anos",false,"Nunca Utilizei","não uso",beneficio_favorito,usa_resgates,sujestao_melhoria,extra,""),
+  novo_formulario("18 - 25 anos",false,"Nunca Utilizei","não uso",beneficio_favorito,usa_resgates,sujestao_melhoria,extra,""),
+  novo_formulario("18 - 25 anos",false,"Nunca Utilizei","não uso",beneficio_favorito,usa_resgates,sujestao_melhoria,extra,""),
 }
+
+
+
+function adicionar_formulario(formulario)
+  formularios[tablelength(formularios) + 1] = deepcopy(formulario)
+  novos_usuarios = novos_usuarios + 1
+end
+
+function zerar_novos_usuarios()
+  novos_usuarios = 0
+end
+
+function numero_pessoas_cadrastadas()
+  local ret = 0
+  for index, value in ipairs(formularios) do
+    if value.cadastrado == true then
+      ret = ret + 1
+    end
+  end
+  return ret
+end
+
+function numero_clientes_inativos() --revisar
+  ret = 0
+  for index, value in ipairs(formularios) do
+    if value.numero_de_resgates == 0 then
+      ret = ret + 1
+    end
+  end
+  return ret
+end
+
+function pegar_taxa_de_retencao() --revisar
+  ret = (numero_pessoas_cadrastadas() + novos_usuarios) / numero_clientes_inativos()
+  return ret
+end
+
+function test_formulario()
+end
