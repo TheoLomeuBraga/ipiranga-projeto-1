@@ -100,20 +100,23 @@ function numero_pessoas_cadrastadas()
   return ret
 end
 
-function numero_clientes_inativos() --revisar
+function numero_clientes_inativos() 
   ret = 0
   for index, value in ipairs(formularios) do
-    if value.numero_de_resgates == 0 then
+    if value.usa_o_app == "Nunca Utilizei" then
       ret = ret + 1
     end
   end
   return ret
 end
 
-function pegar_taxa_de_retencao() --revisar
+function pegar_taxa_de_retencao() 
   ret = (numero_pessoas_cadrastadas() + novos_usuarios) / numero_clientes_inativos()
   return ret
 end
 
 function test_formulario()
+  print("numero de cadastros: ",numero_pessoas_cadrastadas())
+  print("clientes_inativos: ",numero_clientes_inativos() )
+  print(pegar_taxa_de_retencao() )
 end
