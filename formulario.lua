@@ -115,7 +115,7 @@ function pegar_taxa_de_retencao()
   return ret
 end
 
-function test_formulario()
+function dados_formulario()
   print("numero de cadastros: ",numero_pessoas_cadrastadas())
   print("clientes_inativos: ",numero_clientes_inativos() )
   print(pegar_taxa_de_retencao() )
