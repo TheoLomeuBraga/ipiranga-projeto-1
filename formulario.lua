@@ -29,6 +29,8 @@ Qual é o ROI (retorno sobre o investimento) do clube de vantagens?
 --comentario
 -- Feito pelo Pierre (Quantidade de clientes na base de cadastro + Clientes novos / pelos clientes inativos ou de exclusão de conta)
 
+--por Théo Lomeu Braga
+
 require("adicionais")
 
 novos_usuarios = 0
