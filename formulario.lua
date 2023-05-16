@@ -118,5 +118,5 @@ end
 function dados_formulario()
   print("numero de cadastros: ",numero_pessoas_cadrastadas())
   print("clientes_inativos: ",numero_clientes_inativos() )
-  print((pegar_taxa_de_retencao() * 100) .. "%" )
+  print("taxa de retenção:",(pegar_taxa_de_retencao() * 100) .. "%" )
 end
