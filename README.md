@@ -9,7 +9,7 @@ para melhorar e ampliar o produto com base no dados coletados
 
 ## Contribuidores
 
-Pierre Rodrigues
-Théo Lomeu Braga
-João Carlos Rebouças
+Pierre Rodrigues,
+Théo Lomeu Braga,
+João Carlos Rebouças,
 e contamos com a direção do professor Wilson que entregou melhores insights para o projeto
