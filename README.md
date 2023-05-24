@@ -7,7 +7,7 @@ o objetivo do projeto é cirar uma solução apartir de dados relacionados a uso
 para melhorar e ampliar o produto com base no dados coletados
 
 
-## Contribuidores
+# Contribuidores:
 
 Pierre Rodrigues,
 Théo Lomeu Braga,
